@@ -1,102 +1,33 @@
 import 'package:flutter/material.dart';
 import 'third_page.dart';
 
-class SecondPage extends StatelessWidget {
+class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
+
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  // varialve
+  int _counter = 0;
+
+  // method
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementConter() {
+    setState(() {
+      _counter--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Second Page")),
-      // =====================================================
-      // Drawer Navigation
-      // =====================================================
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-
-          children: [
-            // Drawer Header
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-                  Icon(Icons.flutter_dash, size: 60, color: Colors.white),
-
-                  SizedBox(height: 10),
-
-                  Text(
-                    "Flutter Layout App",
-
-                    style: TextStyle(
-                      color: Colors.white,
-
-                      fontSize: 20,
-
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // First Page
-            ListTile(
-              leading: const Icon(Icons.home),
-
-              title: const Text("First Page"),
-
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.pushNamed(context, '/firstpage');
-              },
-            ),
-
-            // Second Page
-            ListTile(
-              leading: const Icon(Icons.looks_two),
-
-              title: const Text("Second Page"),
-
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.pushNamed(context, '/secondpage');
-              },
-            ),
-
-            // Third Page
-            ListTile(
-              leading: const Icon(Icons.looks_3),
-
-              title: const Text("Third Page"),
-
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.pushNamed(context, '/thirdpage');
-              },
-            ),
-
-            // Fourth Page
-            ListTile(
-              leading: const Icon(Icons.looks_4),
-
-              title: const Text("Fourth Page"),
-
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.pushNamed(context, '/fourthpage');
-              },
-            ),
-          ],
-        ),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -130,6 +61,36 @@ class SecondPage extends StatelessWidget {
               },
 
               child: const Text("Back To First Page"),
+            ),
+
+            const SizedBox(height: 40),
+
+            Text("You pushed the button this many times: "),
+
+            // Counter Value
+            Text(_counter.toString(), style: TextStyle(fontSize: 40)),
+
+            ElevatedButton(
+              onPressed: _incrementCounter,
+
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+              ),
+
+              child: const Text("Increment", style: TextStyle(fontSize: 40)),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: _decrementConter,
+
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrange,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text("Decrement", style: TextStyle(fontSize: 40)),
             ),
           ],
         ),
